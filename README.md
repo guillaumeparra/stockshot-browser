@@ -78,6 +78,15 @@ On first launch, Stockshot Browser will:
 Stockshot Browser uses a cascading configuration system:
 
 1. **General Configuration** (`config/defaults.py`): System-wide settings
+
+In this file, you'll need to point the paths you'll want to expose in the directory tree : 
+
+    "directory_tree": {
+        "configured_paths": [
+            "/my/path/",
+        ],
+
+
 2. **Project Configuration** (`your/path/project_config.json`): Project-specific settings
 3. **User Configuration** (`your/path/user_config.json`): Personal preferences
 
