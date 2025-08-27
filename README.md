@@ -78,74 +78,40 @@ On first launch, Stockshot Browser will:
 Stockshot Browser uses a cascading configuration system:
 
 1. **General Configuration** (`config/defaults.py`): System-wide settings
+2. **Project Configuration** (`your/path/project_config.json`): Project-specific settings
+3. **User Configuration** (`your/path/user_config.json`): Personal preferences
 
-In this file, you'll need to point the paths you'll want to expose in the directory tree : 
+
+In the (`config/defaults.py`) file, you'll be able to specify where will be stored the config files (user and project), the thumbnails, the databases, logs, etc.
+
+    "paths": {
+        "log_directory": str(_default_paths['user_dir']),
+        "gen_thumbnail_directory": str(_default_paths['gen_dir'] / "thumbnail"),
+        "gen_db_directory": str(_default_paths['gen_dir'] / "database"),
+        "user_config_path": str(_default_paths['user_dir']),
+        "user_thumbnail_path": str(_default_paths['user_dir'] / "thumbnail"),
+        "user_db_path": str(_default_paths['user_dir'] / "database"),
+        "project_config_path": str(_default_paths['project_dir']),
+        "project_thumbnail_path": str(_default_paths['project_dir'] / "thumbnail"),
+        "project_db_path": str(_default_paths['project_dir'] / "database"),
+    },
+    "config_files": {
+        # Configuration file locations - easily customizable
+        "user_config_file": str(_default_paths['user_dir'] / "user_config.json"),
+        "project_config_file": str(_default_paths['project_dir'] / "project_config.json"),
+
+Also point the paths you'll want to expose in the directory tree : 
 
     "directory_tree": {
         "configured_paths": [
             "/my/path/",
         ],
 
-
-2. **Project Configuration** (`your/path/project_config.json`): Project-specific settings
-3. **User Configuration** (`your/path/user_config.json`): Personal preferences
-
-Configuration files are automatically created in:
-- **Linux/macOS**: `~/.config/stockshot_browser/`
-- **Windows**: `%APPDATA%\StockshotBrowser\`
-
 ## Configuration Examples
 
 ### General Configuration
-```json
-{
-  "version": "1.0.0",
-  "paths": {
-    "base_video_path": "/shared/footage",
-    "project_config_path": "/shared/configs"
-  },
-  "thumbnails": {
-    "default_resolution": 128,
-    "cache_directory": ".thumbnails"
-  },
-  "ffmpeg": {
-    "executable_path": "ffmpeg"
-  }
-}
-```
 
-### Project Configuration
-```json
-{
-  "project_name": "Feature_Film_2024",
-  "sequence_patterns": [
-    "*.####.exr",
-    "shot_*.%04d.png"
-  ],
-  "metadata": {
-    "required_fields": ["copyright", "source"],
-    "custom_tags": ["exterior", "vfx", "practical"]
-  }
-}
-```
-
-### User Configuration
-```json
-{
-  "user_id": "john_doe",
-  "interface": {
-    "theme": "dark",
-    "default_view": "grid",
-    "show_metadata_overlay": true
-  },
-  "external_players": {
-    "default": "/usr/bin/vlc",
-    "alternatives": {
-      "djv": "/usr/local/bin/djv_view"
-    }
-  }
-}
-```
+In the user_config.json and project_config.json file, you'll be able to add more paths that will be added in the directory tree as well.
 
 ## Development
 
