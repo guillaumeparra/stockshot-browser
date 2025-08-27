@@ -1,6 +1,6 @@
 # Stockshot Browser
 
-A professional video file explorer designed for industry workflows. Built with Python 3 and PySide6 for cross-platform compatibility and maximum responsiveness.
+A video file explorer designed for industry workflows. Built with Python 3 and PySide6 for cross-platform compatibility and maximum responsiveness.
 
 ## Features
 
@@ -16,7 +16,6 @@ A professional video file explorer designed for industry workflows. Built with P
 - **Project Contexts**: Isolated workspaces for different productions
 - **Batch Processing**: Mass thumbnail generation and metadata extraction
 - **External Integration**: Configurable external player support
-- **Color Management**: OpenColorIO integration for accurate color display
 
 ## Technology Stack
 
@@ -39,7 +38,7 @@ A professional video file explorer designed for industry workflows. Built with P
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/stockshot/stockshot-browser.git
+git clone https://github.com/guillaumeparra/sbrowser.git
 cd stockshot-browser
 ```
 
@@ -52,17 +51,6 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
-```
-
-4. Install in development mode:
-```bash
-pip install -e .
-```
-
-### Using pip (when available)
-
-```bash
-pip install stockshot-browser
 ```
 
 ## Quick Start
@@ -89,9 +77,9 @@ On first launch, Stockshot Browser will:
 
 Stockshot Browser uses a cascading configuration system:
 
-1. **General Configuration** (`global_config.json`): System-wide settings
-2. **Project Configuration** (`project_config.json`): Project-specific settings
-3. **User Configuration** (`user_config.json`): Personal preferences
+1. **General Configuration** (`config/defaults.py`): System-wide settings
+2. **Project Configuration** (`your/path/project_config.json`): Project-specific settings
+3. **User Configuration** (`your/path/user_config.json`): Personal preferences
 
 Configuration files are automatically created in:
 - **Linux/macOS**: `~/.config/stockshot_browser/`
@@ -166,46 +154,6 @@ stockshot_browser/
 ├── tests/               # Test suites
 ├── docs/                # Documentation
 └── scripts/             # Build and deployment
-```
-
-### Setting up Development Environment
-
-1. Clone the repository and create virtual environment (see Installation)
-
-2. Install development dependencies:
-```bash
-pip install -e ".[dev]"
-```
-
-3. Run tests:
-```bash
-pytest
-```
-
-4. Format code:
-```bash
-black src/ tests/
-```
-
-5. Lint code:
-```bash
-flake8 src/ tests/
-```
-
-### Running Tests
-
-```bash
-# Run all tests
-pytest
-
-# Run with coverage
-pytest --cov=stockshot_browser
-
-# Run specific test file
-pytest tests/test_config.py
-
-# Run with GUI tests (requires display)
-pytest tests/test_ui.py
 ```
 
 ### Architecture Overview
@@ -301,25 +249,6 @@ Configure external players for different file types:
 - Limit concurrent thumbnail generation
 - Check available disk space for cache
 
-### Log Files
-
-Log files are stored in:
-- **Linux/macOS**: `~/.local/share/stockshot_browser/stockshot_browser.log`
-- **Windows**: `%LOCALAPPDATA%\StockshotBrowser\stockshot_browser.log`
-
-## Contributing
-
-We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
-
-### Development Workflow
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests for new functionality
-5. Run the test suite
-6. Submit a pull request
-
 ### Code Style
 
 - Follow PEP 8 style guidelines
@@ -327,30 +256,6 @@ We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) f
 - Add type hints where appropriate
 - Write comprehensive docstrings
 - Include unit tests for new features
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Support
-
-- **Documentation**: [GitHub Wiki](https://github.com/stockshot/stockshot-browser/wiki)
-- **Issues**: [GitHub Issues](https://github.com/stockshot/stockshot-browser/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/stockshot/stockshot-browser/discussions)
-
-## Roadmap
-
-### Version 1.1
-- [ ] Plugin system for custom metadata extractors
-- [ ] Network storage support
-- [ ] Advanced color management features
-- [ ] Batch export functionality
-
-### Version 1.2
-- [ ] Web interface for remote access
-- [ ] Integration with asset management systems
-- [ ] Advanced search with AI-powered tagging
-- [ ] Performance profiling tools
 
 ## Acknowledgments
 
