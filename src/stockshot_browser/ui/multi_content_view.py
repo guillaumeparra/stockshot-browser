@@ -2375,7 +2375,11 @@ class MultiContentViewWidget(QWidget, DragDropMixin):
     
     def _setup_context_menu(self):
         """Setup context menu manager."""
-        self.context_menu_manager = ContextMenuManager(self)
+        config_manager = None
+        if self.app_controller and hasattr(self.app_controller, 'config_manager'):
+            config_manager = self.app_controller.config_manager
+        
+        self.context_menu_manager = ContextMenuManager(self, config_manager)
         self.context_menu_manager.action_triggered.connect(self._on_context_action)
     
     @Slot(str, object)

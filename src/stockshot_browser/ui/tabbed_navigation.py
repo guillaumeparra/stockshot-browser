@@ -437,31 +437,31 @@ class TabbedNavigationWidget(QWidget):
         
         # Duplicate tab action
         duplicate_action = QAction("Duplicate Tab", self)
-        duplicate_action.triggered.connect(lambda: self.duplicate_tab(index))
+        duplicate_action.triggered.connect(lambda checked: self.duplicate_tab(index))
         menu.addAction(duplicate_action)
         
         # Rename tab action
         rename_action = QAction("Rename Tab", self)
-        rename_action.triggered.connect(lambda: self.rename_tab(index))
+        rename_action.triggered.connect(lambda checked: self.rename_tab(index))
         menu.addAction(rename_action)
         
         menu.addSeparator()
         
         # Close tab action
         close_action = QAction("Close Tab", self)
-        close_action.triggered.connect(lambda: self.close_tab(index))
+        close_action.triggered.connect(lambda checked: self.close_tab(index))
         close_action.setEnabled(self.tab_widget.count() > 1)
         menu.addAction(close_action)
         
         # Close other tabs action
         close_others_action = QAction("Close Other Tabs", self)
-        close_others_action.triggered.connect(lambda: self.close_other_tabs(index))
+        close_others_action.triggered.connect(lambda checked: self.close_other_tabs(index))
         close_others_action.setEnabled(self.tab_widget.count() > 1)
         menu.addAction(close_others_action)
         
         # Close tabs to the right
         close_right_action = QAction("Close Tabs to the Right", self)
-        close_right_action.triggered.connect(lambda: self.close_tabs_to_right(index))
+        close_right_action.triggered.connect(lambda checked: self.close_tabs_to_right(index))
         close_right_action.setEnabled(index < self.tab_widget.count() - 1)
         menu.addAction(close_right_action)
         

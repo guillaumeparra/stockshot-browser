@@ -90,12 +90,6 @@ class ConfigSchema:
     
     @staticmethod
     def _validate_ui(ui: Dict[str, Any]) -> None:
-        """Validate UI configuration."""
-        if "theme" in ui:
-            theme = ui["theme"]
-            valid_themes = ["light", "dark", "auto"]
-            if theme not in valid_themes:
-                raise ConfigValidationError(f"theme must be one of: {valid_themes}")
         
         if "default_view_mode" in ui:
             view_mode = ui["default_view_mode"]

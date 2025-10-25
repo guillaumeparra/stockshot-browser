@@ -18,14 +18,21 @@ logger = logging.getLogger(__name__)
 class ExternalPlayerManager:
     """Manages external media players and applications."""
     
-    def __init__(self):
+    def __init__(self, config_manager=None):
         self.system = platform.system()
+        self.config_manager = config_manager
         self.players = self._detect_players()
         
     def _detect_players(self) -> Dict[str, Dict[str, Any]]:
         """Detect available media players on the system."""
         players = {}
         
+        # Get common players from configuration if available
+        config_players = {}
+        if self.config_manager:
+            config_players = self.config_manager.get('external_players.common_players', {})
+        
+        # Platform-specific defaults (fallback if config not available)
         if self.system == "Linux":
             # Common Linux media players
             player_commands = {
@@ -67,6 +74,15 @@ class ExternalPlayerManager:
             }
         else:
             player_commands = {}
+        
+        # Merge configuration players with platform defaults
+        # Config players take precedence
+        for player_key, player_paths in config_players.items():
+            player_name = player_key.upper()  # Convert to display name (e.g., 'djv' -> 'DJV')
+            if isinstance(player_paths, list):
+                player_commands[player_name] = player_paths
+            else:
+                logger.warning(f"Invalid player configuration for {player_key}: expected list, got {type(player_paths)}")
         
         # Check which players are available
         for name, commands in player_commands.items():
@@ -156,9 +172,10 @@ class ContextMenuManager(QObject):
     # Signals
     action_triggered = Signal(str, object)  # action_name, entity
     
-    def __init__(self, parent=None):
+    def __init__(self, parent=None, config_manager=None):
         super().__init__(parent)
-        self.player_manager = ExternalPlayerManager()
+        self.config_manager = config_manager
+        self.player_manager = ExternalPlayerManager(config_manager)
         self.recent_players = []  # Track recently used players
         self._opening_entities = set()  # Track entities currently being opened to prevent duplicates
         

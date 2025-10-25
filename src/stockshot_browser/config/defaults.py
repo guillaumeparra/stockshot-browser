@@ -8,7 +8,7 @@ from pathlib import Path
 # Get platform-specific default paths
 def get_default_paths():
     """Get platform-specific default paths."""
-    home = Path('/storage/vscode/stockshot-browser/_cache_and_configs_')
+    home = Path('/storage/tmp/_cache_and_configs_')
     
     if os.name == 'nt':  # Windows
         app_data = Path(os.environ.get('APPDATA', home / 'AppData' / 'Roaming'))
@@ -165,9 +165,7 @@ DEFAULT_CONFIG = {
         "auto_detect": True,
         "common_players": {
             "vlc": ["vlc", "/usr/bin/vlc", "/Applications/VLC.app/Contents/MacOS/VLC"],
-            "mpv": ["mpv", "/usr/bin/mpv", "/usr/local/bin/mpv"],
-            "djv": ["djv_view", "/usr/local/bin/djv_view"],
-            "rv": ["rv", "/opt/rv/bin/rv"],
+            "djv": ["djv", "/apps/djv/bin/djv"],
         },
     },
     "performance": {
@@ -230,6 +228,7 @@ DEFAULT_CONFIG = {
     },
     "directory_tree": {
         "configured_paths": [
+            "/apps/comfyui/input",
             "/apps/comfyui/output",
         ],
         "show_drives": False,  # Windows only

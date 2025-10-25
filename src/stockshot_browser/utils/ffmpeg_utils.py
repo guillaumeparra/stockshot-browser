@@ -578,7 +578,7 @@ class FFmpegThumbnailGenerator:
             filter_complex = (
                 f"fps=fps={frame_count}/{duration},"  # Extract frames at calculated rate
                 f"scale=-1:{resolution}:flags=lanczos,"  # Scale to target resolution
-                f"split=3[s0][s1][s2];"  # Split for alpha handling and palette generation
+                f"split=2[s0][s1];"  # Split for alpha handling and palette generation
                 f"[s0]format=yuv420p,drawbox=c=black:t=fill[bg];"  # Create black background
                 f"[bg][s1]overlay=alpha=straight[comp];"  # Overlay on black background, ignoring alpha
                 f"[comp]split[s3][s4];"  # Split composited stream for palette generation
@@ -641,7 +641,7 @@ class FFmpegThumbnailGenerator:
             filter_complex = (
                 f"fps=fps={frame_count}/{duration},"
                 f"scale=-1:{resolution}:flags=lanczos,"
-                f"split=3[s0][s1][s2];"  # Split for alpha handling and palette generation
+                f"split=2[s0][s1];"  # Split for alpha handling and palette generation
                 f"[s0]format=yuv420p,drawbox=c=black:t=fill[bg];"  # Create black background
                 f"[bg][s1]overlay=alpha=straight[comp];"  # Overlay on black background, ignoring alpha
                 f"[comp]split[s3][s4];"  # Split composited stream for palette generation
@@ -767,7 +767,7 @@ class FFmpegThumbnailGenerator:
                 filter_complex = (
                     f"fps={fps},"  # Set frame rate
                     f"scale=-1:{resolution}:flags=lanczos:force_original_aspect_ratio=decrease,"  # Ensure consistent scaling
-                    f"split=3[s0][s1][s2];"  # Split for alpha handling and palette generation
+                    f"split=2[s0][s1];"  # Split for alpha handling and palette generation
                     f"[s0]format=yuv420p,drawbox=c=black:t=fill[bg];"  # Create black background
                     f"[bg][s1]overlay=alpha=straight[comp];"  # Overlay on black background, ignoring alpha
                     f"[comp]split[s3][s4];"  # Split composited stream for palette generation
@@ -859,7 +859,7 @@ class FFmpegThumbnailGenerator:
                 filter_complex = (
                     f"fps={fps},"
                     f"scale=-1:{resolution}:flags=lanczos:force_original_aspect_ratio=decrease,"  # Ensure consistent scaling
-                    f"split=3[s0][s1][s2];"  # Split for alpha handling and palette generation
+                    f"split=2[s0][s1];"  # Split for alpha handling and palette generation
                     f"[s0]format=yuv420p,drawbox=c=black:t=fill[bg];"  # Create black background
                     f"[bg][s1]overlay=alpha=straight[comp];"  # Overlay on black background, ignoring alpha
                     f"[comp]split[s3][s4];"  # Split composited stream for palette generation

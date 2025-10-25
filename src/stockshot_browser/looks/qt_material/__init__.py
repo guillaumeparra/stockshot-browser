@@ -452,7 +452,7 @@ class QtStyleTools:
         for i, theme in enumerate(['default'] + list_themes()):
             action = QAction(parent)
             # action.triggered.connect(self._wrapper(parent, theme, self.extra_values, self.update_buttons))
-            action.triggered.connect(lambda: self.update_theme_event(parent))
+            action.triggered.connect(lambda checked: self.update_theme_event(parent))
             try:
                 action.setText(theme)
                 action.setCheckable(True)
@@ -482,7 +482,7 @@ class QtStyleTools:
         for density in map(str, range(-3, 4)):
             action = QAction(parent)
             # action.triggered.connect(self._wrapper(parent, density, self.extra_values, self.update_buttons))
-            action.triggered.connect(lambda: self.update_theme_event(parent))
+            action.triggered.connect(lambda checked: self.update_theme_event(parent))
             try:
                 action.setText(density)
                 action.setCheckable(True)
@@ -751,7 +751,7 @@ class QtStyleTools:
 
         self.update_buttons()
         self.dock_theme.checkBox_ligh_theme.clicked.connect(
-            lambda: self.update_theme(self.main)
+            lambda checked: self.update_theme(self.main)
         )
 
         for color in self.colors:
